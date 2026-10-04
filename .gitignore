@@ -1,0 +1,91 @@
+# ==============================================================================
+# Claim4u — Production & Local .gitignore
+# Optimized for GoDaddy cPanel, GitHub Private Repo, and Local Development
+# ==============================================================================
+
+# --- Environment & Secret Configuration Files ---
+# NEVER commit credentials, API keys, or server passwords to GitHub
+.env
+.env.*
+*.env
+*.local
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+
+# Explicitly allow the example template to be tracked
+!.env.example
+
+# Client-side local runtime override file (if used locally)
+js/config.local.js
+
+# --- Archives & Large Backup Files ---
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.bak
+*.backup
+*.old
+my.zip
+
+# --- Local Development Scripts & Temporary Directories ---
+server.ps1
+scratch/
+tmp/
+temp/
+*.tmp
+
+# --- Operating System Artifacts ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# --- IDE & Editor Files ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# --- Logs & Error Reports ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+error_log
+access_log
+
+# --- GoDaddy / cPanel Server Runtime Specifics ---
+cgi-bin/
+.cpanel/
+access-logs/
+
+# IMPORTANT: Ensure the cPanel Git Deployment config file is tracked
+!.cpanel.yml
+
+# --- Dependencies & Build Artifacts (for future tooling) ---
+node_modules/
+dist/
+build/
+.cache/

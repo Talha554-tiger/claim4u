@@ -1,0 +1,19 @@
+---
+# ==============================================================================
+# GoDaddy cPanel Git™ Version Control Automated Deployment Configuration
+# ==============================================================================
+# When you click "Deploy HEAD Commit" in cPanel > Git™ Version Control > Manage,
+# cPanel executes these tasks to copy your site files directly into public_html.
+#
+# REPLACE 'YOUR_CPANEL_USERNAME' with your actual cPanel username
+# (found in the top-right or right sidebar of your GoDaddy cPanel dashboard).
+# ==============================================================================
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/YOUR_CPANEL_USERNAME/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R index.html compensation.html areas.html privacy.html claim4u-logo.png .htaccess assets css js $DEPLOYPATH
+    - /bin/chmod 755 $DEPLOYPATH
+    - /bin/chmod 644 $DEPLOYPATH/*.html
+    - /bin/chmod 644 $DEPLOYPATH/.htaccess
