@@ -13,7 +13,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/YOUR_CPANEL_USERNAME/public_html/
     - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R index.html compensation.html areas.html privacy.html claim4u-logo.png .htaccess assets css js $DEPLOYPATH
+    - /bin/cp -R index.html compensation.html areas.html privacy.html thank-you.html claim4u-logo.png .htaccess assets css js $DEPLOYPATH
     - /bin/chmod 755 $DEPLOYPATH
     - /bin/chmod 644 $DEPLOYPATH/*.html
     - /bin/chmod 644 $DEPLOYPATH/.htaccess
