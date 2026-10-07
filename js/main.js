@@ -417,10 +417,19 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('LocalStorage save error:', e);
     }
 
-    // 2. Dispatch custom event for Analytics / Tag Manager
+    // 2. Dispatch custom event for Analytics & trigger Google Ads Lead Conversion
     try {
       window.dispatchEvent(new CustomEvent('claim4u_lead_submitted', { detail: claimData }));
-    } catch (e) {}
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18344158870/o8fFCJqoz4kdEJbN1qtE',
+          'value': 1.0,
+          'currency': 'PKR'
+        });
+      }
+    } catch (e) {
+      console.warn('Analytics / Google Ads conversion trigger error:', e);
+    }
 
     // 3. Optional Webhook dispatch (Zapier / CRM / Make / Email API)
     if (CONFIG.webhookEndpoint) {
@@ -449,7 +458,15 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const directWaUrl = `${CONFIG.whatsappBaseUrl}?text=${waText}`;
 
-    // 5. Render Success Screen
+    // 5. Store lead for Thank-You page personalization & Render Success Screen
+    try {
+      sessionStorage.setItem('claim4u_submitted_lead', JSON.stringify({
+        fullName: claimData.full_name,
+        phone: claimData.phone,
+        waUrl: directWaUrl
+      }));
+    } catch (e) {}
+
     setTimeout(() => {
       wizardForm.style.display = 'none';
       if (wizardSuccess) {
@@ -463,31 +480,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <h3 class="success-title">Claim Check Received!</h3>
             <p class="success-desc">
-              Thank you <strong>${escapeHtml(claimData.full_name)}</strong>. An SRA-regulated UK housing disrepair solicitor from <strong>Claim4u</strong> will review your details and call you back on <strong>${escapeHtml(claimData.phone)}</strong> within 24 hours.
-            </p>
-            <div class="success-actions">
-              <a href="${directWaUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; font-size: 1rem; padding: 1rem;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12 20.19c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.165 8.165 0 0 1-1.26-4.42c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.27-8.22 8.27z"/>
-                </svg>
-                Fast-Track on WhatsApp (${CONFIG.phoneDisplay})
-              </a>
-              <a href="${CONFIG.phoneTel}" class="btn btn-navy" style="width: 100%;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-                Direct Call: ${CONFIG.phoneDisplay}
-              </a>
-            </div>
-            <p style="font-size: 0.75rem; color: #64748b; margin-top: 1.25rem;">
-              No Win, No Fee · 100% Confidential · Free Assessment
+              Thank you <strong>${escapeHtml(claimData.full_name)}</strong>. Redirecting you to confirmation...
             </p>
           </div>
         `;
         wizardSuccess.style.display = 'block';
       }
       showToast('Eligibility check submitted successfully!', 'success');
-    }, 700);
+      
+      // Redirect to Google Ads Conversion Page
+      setTimeout(() => {
+        window.location.href = 'thank-you.html';
+      }, 400);
+    }, 600);
   }
 
   function escapeHtml(str) {
