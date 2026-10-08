@@ -205,7 +205,12 @@
     </div>
   </footer>
 
+  <!-- Firebase -->
+  <script type="module" src="js/firebase.js"></script>
+  <script src="js/config.js"></script>
+
   <script>
+
     // Personalize message if lead data is present in sessionStorage or localStorage
     try {
       const raw = sessionStorage.getItem('claim4u_submitted_lead') || localStorage.getItem('claim4u_last_lead');
