@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hhgg-c32b9"
+  },
+  "targets": {
+    "hhgg-c32b9": {
+      "hosting": {
+        "claim4u": [
+          "hhgg-c32b9-ac1d1"
+        ]
+      }
+    }
+  }
+}

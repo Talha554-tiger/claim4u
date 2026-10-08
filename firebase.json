@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "site": "hhgg-c32b9-ac1d1",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "my.zip",
+      "server.ps1",
+      "*.md"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
+}
