@@ -43,6 +43,28 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    .legal-art-card {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+    .legal-art-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -10px rgba(4, 28, 56, 0.18) !important;
+    }
+    .legal-art-card:hover img {
+      transform: scale(1.025);
+    }
+    @media (max-width: 600px) {
+      .legal-art-card img {
+        height: 260px;
+      }
+      .legal-art-card .art-badge {
+        font-size: 0.72rem !important;
+        padding: 5px 10px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -113,10 +135,67 @@
           </h1>
 
           <p id="thankYouMessage"
-            style="font-size: 1.15rem; color: #475569; max-width: 600px; margin: 0 auto 2rem; line-height: 1.6;">
+            style="font-size: 1.15rem; color: #475569; max-width: 600px; margin: 0 auto 1.75rem; line-height: 1.6;">
             An SRA-regulated UK housing disrepair solicitor from <strong>Claim4u</strong> will review your details and
             contact you within <strong>24 hours</strong> for your free assessment.
           </p>
+
+          <!-- Legal Team Trust Artwork -->
+          <div class="legal-art-card"
+            style="margin: 0 auto 2.25rem; max-width: 580px; background: #ffffff; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 14px 34px -10px rgba(4, 28, 56, 0.12); overflow: hidden; position: relative;">
+            <div style="position: relative; overflow: hidden; background: #f1f5f9;">
+              <img src="assets/legal-advisors.jpg" alt="Claim4u Housing Disrepair Legal Advisors"
+                style="width: 100%; height: auto; display: block; object-fit: cover; transition: transform 0.4s ease;" width="580" height="435" />
+              
+              <!-- Floating Top Badges -->
+              <div style="position: absolute; top: 14px; left: 14px; display: flex; flex-wrap: wrap; gap: 8px;">
+                <span class="art-badge" style="background: rgba(4, 28, 56, 0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #ffffff; padding: 6px 12px; border-radius: 30px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.15);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f5c862" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  SRA-Regulated Solicitors
+                </span>
+              </div>
+
+              <div style="position: absolute; top: 14px; right: 14px;">
+                <span class="art-badge" style="background: rgba(16, 185, 129, 0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #ffffff; padding: 6px 12px; border-radius: 30px; font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(16,185,129,0.3);">
+                  <span style="width: 7px; height: 7px; border-radius: 50%; background: #ffffff; display: inline-block;"></span>
+                  100% No Win, No Fee
+                </span>
+              </div>
+
+              <!-- Bottom Overlay Caption -->
+              <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(4, 28, 56, 0.94) 0%, rgba(4, 28, 56, 0.7) 60%, transparent 100%); padding: 1.5rem 1.25rem 0.9rem; color: #ffffff; text-align: left;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                  <div>
+                    <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.6px; color: #6ee7b7; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+                      <span class="live-dot" style="margin: 0; background: #10b981;"></span>
+                      Assigned Housing Disrepair Case Team
+                    </span>
+                    <h3 style="font-size: 1.1rem; color: #ffffff; font-weight: 700; margin: 2px 0 0; font-family: var(--font-display);">
+                      Fighting for Your Repairs & Maximum Compensation
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Trust Bar underneath Artwork -->
+            <div style="padding: 0.85rem 1.25rem; background: var(--surface); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: #475569;">
+              <span style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Council & Housing Association
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Free Case Assessment
+              </span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Legal Protection Guaranteed
+              </span>
+            </div>
+          </div>
 
           <!-- What Happens Next 3-Step Banner -->
           <div
