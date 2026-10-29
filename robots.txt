@@ -1,0 +1,8 @@
+# Claim4u - Robots.txt for Search Engines & SEO Optimization
+User-agent: *
+Allow: /
+Disallow: /my.zip
+
+# Sitemaps
+Sitemap: https://claim4u-uk.co/sitemap.xml
+

@@ -404,31 +404,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     claimData.submitted_at = new Date().toISOString();
 
-    // 1. Save lead to LocalStorage Leads Database
+    // 1. Gather Advertising & Campaign Attribution
+    const attribution = (typeof window.getClaimAttribution === 'function') 
+      ? window.getClaimAttribution() 
+      : { channel: 'Direct / Organic', source: 'Direct', campaign: 'None' };
+
+    const leadRecord = {
+      id: 'CLM-' + Date.now().toString().slice(-6),
+      ...claimData,
+      attribution: attribution,
+      ad_channel: attribution.channel || 'Direct',
+      ad_source: attribution.source || 'Direct',
+      ad_campaign: attribution.campaign || 'None',
+      gclid: attribution.gclid || '',
+      fbclid: attribution.fbclid || '',
+      status: 'New'
+    };
+
+    // Save lead to LocalStorage Leads Database
     try {
       const existingLeads = JSON.parse(localStorage.getItem('claim4u_leads') || '[]');
-      existingLeads.unshift({
-        id: 'CLM-' + Date.now().toString().slice(-6),
-        ...claimData,
-        status: 'New'
-      });
+      existingLeads.unshift(leadRecord);
       localStorage.setItem('claim4u_leads', JSON.stringify(existingLeads));
+      localStorage.setItem('claim4u_last_lead', JSON.stringify(leadRecord));
     } catch (e) {
       console.warn('LocalStorage save error:', e);
     }
 
-    // 2. Dispatch custom event for Analytics & trigger Google Ads Lead Conversion
+    // 2. Dispatch Advertising Conversions (Google Ads + Meta Pixel + GA4)
     try {
-      window.dispatchEvent(new CustomEvent('claim4u_lead_submitted', { detail: claimData }));
-      if (typeof window.gtag === 'function') {
+      window.dispatchEvent(new CustomEvent('claim4u_lead_submitted', { detail: leadRecord }));
+      if (typeof window.trackAdConversion === 'function') {
+        window.trackAdConversion('lead_form_submitted', {
+          landlord_type: claimData.landlord_type,
+          landlord: claimData.landlord_name,
+          value: 1.0,
+          currency: 'GBP'
+        });
+      } else if (typeof window.gtag === 'function') {
         window.gtag('event', 'conversion', {
           'send_to': 'AW-18344158870/o8fFCJqoz4kdEJbN1qtE',
           'value': 1.0,
-          'currency': 'PKR'
+          'currency': 'GBP'
         });
       }
     } catch (e) {
-      console.warn('Analytics / Google Ads conversion trigger error:', e);
+      console.warn('Analytics / Advertising conversion trigger error:', e);
     }
 
     // 3. Optional Webhook dispatch (Zapier / CRM / Make / Email API)
@@ -437,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(CONFIG.webhookEndpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(claimData)
+          body: JSON.stringify(leadRecord)
         }).catch(err => console.warn('Webhook post:', err));
       } catch (e) {}
     }
@@ -723,10 +744,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const leads = JSON.parse(localStorage.getItem('claim4u_leads') || '[]');
     let leadsHtml = `
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-        <span style="font-weight: 700; color: #041c38;">Total Enquiries: ${leads.length}</span>
+        <div>
+          <span style="font-weight: 800; font-size: 1.1rem; color: #041c38;">Total Enquiries: ${leads.length}</span>
+          <div style="font-size: 0.8rem; color: #64748b;">Includes Google Ads &amp; Meta Pixel conversions</div>
+        </div>
         <div style="display: flex; gap: 0.5rem;">
           <button id="exportCsvBtn" class="btn btn-navy" style="font-size: 0.8rem; padding: 0.5rem 0.9rem;">Export CSV</button>
           <button id="clearLeadsBtn" class="btn btn-ghost" style="font-size: 0.8rem; padding: 0.5rem 0.9rem; color: #ef4444;">Clear</button>
+        </div>
+      </div>
+
+      <!-- Ad Campaign Link Generator Tool -->
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+        <h4 style="font-size: 0.92rem; color: #041c38; font-weight: 700; margin-bottom: 0.5rem;">
+          🚀 Meta &amp; Google Ads URL Campaign Builder
+        </h4>
+        <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.75rem;">
+          Generate tracked links for your Facebook, Instagram, or Google Ads campaigns. Leads from these URLs are automatically tagged.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 700; color: #475569;">Platform</label>
+            <select id="adGenPlatform" class="form-select" style="font-size: 0.82rem; padding: 6px;">
+              <option value="meta">Meta (Facebook &amp; Instagram)</option>
+              <option value="google">Google Ads</option>
+              <option value="tiktok">TikTok Ads</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 700; color: #475569;">Campaign Focus</label>
+            <select id="adGenCampaign" class="form-select" style="font-size: 0.82rem; padding: 6px;">
+              <option value="mould_damp">Damp &amp; Mould Claims</option>
+              <option value="council_housing">Council Tenant Repairs</option>
+              <option value="boiler_heating">Broken Boilers / Heating</option>
+              <option value="water_leaks">Water Ingress &amp; Leaks</option>
+              <option value="general_disrepair">General Housing Disrepair</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="adGenResult" readonly class="form-input" style="font-size: 0.8rem; padding: 6px 10px; background: #ffffff;" value="https://claim4u-uk.co/?utm_source=meta&utm_medium=paid_social&utm_campaign=mould_damp" />
+          <button type="button" id="adGenCopyBtn" class="btn btn-navy" style="font-size: 0.8rem; padding: 6px 12px; white-space: nowrap;">Copy Link</button>
         </div>
       </div>
     `;
@@ -734,7 +792,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (leads.length === 0) {
       leadsHtml += `<p style="text-align: center; color: #64748b; padding: 2rem 0;">No leads captured in local database yet. Submit the form to see entries here.</p>`;
     } else {
-      leadsHtml += `<div style="overflow-x: auto; max-height: 400px;"><table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left;">
+      leadsHtml += `<div style="overflow-x: auto; max-height: 400px;"><table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
         <thead>
           <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
             <th style="padding: 8px;">Date</th>
@@ -742,14 +800,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <th style="padding: 8px;">Phone</th>
             <th style="padding: 8px;">Landlord</th>
             <th style="padding: 8px;">Damages</th>
+            <th style="padding: 8px;">Ad Source</th>
             <th style="padding: 8px;">Action</th>
           </tr>
         </thead>
         <tbody>
       `;
 
-      leads.forEach((lead, i) => {
+      leads.forEach((lead) => {
         const dateStr = lead.submitted_at ? new Date(lead.submitted_at).toLocaleDateString('en-GB') : 'Recent';
+        const channelLabel = lead.ad_channel || (lead.attribution && lead.attribution.channel) || 'Direct';
+        const channelColor = channelLabel.includes('Google') ? '#2563eb' : channelLabel.includes('Meta') ? '#0284c7' : '#64748b';
+        
         leadsHtml += `
           <tr style="border-bottom: 1px solid #e2e8f0;">
             <td style="padding: 8px;">${dateStr}</td>
@@ -757,6 +819,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <td style="padding: 8px;"><a href="tel:${lead.phone}" style="color: #07254a;">${escapeHtml(lead.phone)}</a></td>
             <td style="padding: 8px;">${escapeHtml(lead.landlord_name)}</td>
             <td style="padding: 8px;">${escapeHtml((lead.damage_types || []).join(', '))}</td>
+            <td style="padding: 8px;">
+              <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; color: #ffffff; background: ${channelColor}; padding: 2px 7px; border-radius: 4px;">
+                ${escapeHtml(channelLabel)}
+              </span>
+            </td>
             <td style="padding: 8px;">
               <a href="https://wa.me/447473956657?text=${encodeURIComponent('Following up on claim for ' + lead.full_name)}" target="_blank" style="color: #10b981; font-weight: 700;">WhatsApp</a>
             </td>
@@ -766,10 +833,11 @@ document.addEventListener('DOMContentLoaded', () => {
       leadsHtml += `</tbody></table></div>`;
     }
 
-    openModal('Claim4u Lead Management Dashboard', leadsHtml);
+    openModal('Claim4u Lead Management & Ads Console', leadsHtml);
 
-    // CSV Export button handler inside modal
+    // Event handlers inside modal
     setTimeout(() => {
+      // Export CSV
       const exportBtn = document.getElementById('exportCsvBtn');
       if (exportBtn) {
         exportBtn.addEventListener('click', () => {
@@ -777,6 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
 
+      // Clear Leads
       const clearBtn = document.getElementById('clearLeadsBtn');
       if (clearBtn) {
         clearBtn.addEventListener('click', () => {
@@ -785,6 +854,36 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
             showToast('Leads database cleared', 'info');
           }
+        });
+      }
+
+      // Ad URL Generator
+      const selPlatform = document.getElementById('adGenPlatform');
+      const selCampaign = document.getElementById('adGenCampaign');
+      const inputResult = document.getElementById('adGenResult');
+      const btnCopy = document.getElementById('adGenCopyBtn');
+
+      function updateAdUrl() {
+        if (!selPlatform || !selCampaign || !inputResult) return;
+        const p = selPlatform.value;
+        const c = selCampaign.value;
+        const medium = p === 'meta' || p === 'tiktok' ? 'paid_social' : 'cpc';
+        const url = `https://claim4u-uk.co/?utm_source=${p}&utm_medium=${medium}&utm_campaign=${c}`;
+        inputResult.value = url;
+      }
+
+      if (selPlatform) selPlatform.addEventListener('change', updateAdUrl);
+      if (selCampaign) selCampaign.addEventListener('change', updateAdUrl);
+
+      if (btnCopy && inputResult) {
+        btnCopy.addEventListener('click', () => {
+          navigator.clipboard.writeText(inputResult.value).then(() => {
+            showToast('Tracked Ad URL copied to clipboard!', 'success');
+          }).catch(() => {
+            inputResult.select();
+            document.execCommand('copy');
+            showToast('Tracked Ad URL copied!', 'success');
+          });
         });
       }
     }, 100);
@@ -809,19 +908,27 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('No leads to export', 'warning');
       return;
     }
-    const headers = ['ID', 'Date', 'Full Name', 'Phone', 'Email', 'Landlord Type', 'Landlord Name', 'Damages', 'Cost Band', 'Postcode'];
-    const rows = leads.map(l => [
-      l.id || '',
-      l.submitted_at || '',
-      `"${(l.full_name || '').replace(/"/g, '""')}"`,
-      `"${l.phone || ''}"`,
-      `"${l.email || ''}"`,
-      `"${l.landlord_type || ''}"`,
-      `"${(l.landlord_name || '').replace(/"/g, '""')}"`,
-      `"${(l.damage_types || []).join('; ')}"`,
-      `"${l.estimated_cost_band || ''}"`,
-      `"${l.postcode || ''}"`
-    ]);
+    const headers = ['ID', 'Date', 'Full Name', 'Phone', 'Email', 'Landlord Type', 'Landlord Name', 'Damages', 'Cost Band', 'Postcode', 'Ad Channel', 'UTM Source', 'UTM Campaign', 'GCLID', 'FBCLID'];
+    const rows = leads.map(l => {
+      const attr = l.attribution || {};
+      return [
+        l.id || '',
+        l.submitted_at || '',
+        `"${(l.full_name || '').replace(/"/g, '""')}"`,
+        `"${l.phone || ''}"`,
+        `"${l.email || ''}"`,
+        `"${l.landlord_type || ''}"`,
+        `"${(l.landlord_name || '').replace(/"/g, '""')}"`,
+        `"${(l.damage_types || []).join('; ')}"`,
+        `"${l.estimated_cost_band || ''}"`,
+        `"${l.postcode || ''}"`,
+        `"${l.ad_channel || attr.channel || 'Direct'}"`,
+        `"${l.ad_source || attr.source || ''}"`,
+        `"${l.ad_campaign || attr.campaign || ''}"`,
+        `"${l.gclid || attr.gclid || ''}"`,
+        `"${l.fbclid || attr.fbclid || ''}"`
+      ];
+    });
 
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
@@ -831,7 +938,32 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showToast('CSV downloaded successfully', 'success');
+    showToast('CSV downloaded successfully with Ad Attribution!', 'success');
+  }
+
+  /* ==========================================================================
+     Reviews Filter Tabs
+     ========================================================================== */
+  const reviewFilterBtns = document.querySelectorAll('.review-filter-btn');
+  const reviewCards = document.querySelectorAll('.review-card');
+
+  if (reviewFilterBtns.length && reviewCards.length) {
+    reviewFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        reviewFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        reviewCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
   }
 
   /* ==========================================================================

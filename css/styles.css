@@ -2451,3 +2451,632 @@ button, input, select, textarea {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
 }
+
+/* ==========================================================================
+   Trust Stats & Metrics Counter Bar
+   ========================================================================== */
+.trust-stats-section {
+  background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
+  color: #ffffff;
+  padding: 2.25rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 3px solid var(--gold-500);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.trust-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.trust-stat-card {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.trust-stat-card:last-child {
+  border-right: none;
+}
+
+.trust-stat-number {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--gold-400);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.trust-stat-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.trust-stat-sub {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+@media (max-width: 900px) {
+  .trust-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 1rem;
+  }
+  .trust-stat-card:nth-child(2) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .trust-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .trust-stat-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.25rem;
+  }
+  .trust-stat-card:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ==========================================================================
+   Verified Human Reviews & Success Stories
+   ========================================================================== */
+.reviews-section {
+  background-color: #ffffff;
+  position: relative;
+}
+
+.reviews-header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.rating-summary-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--navy-50);
+  border: 1px solid rgba(4, 28, 56, 0.12);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+}
+
+.rating-score {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--navy-900);
+  line-height: 1;
+}
+
+.rating-stars-gold {
+  color: #f59e0b;
+  display: inline-flex;
+  gap: 2px;
+}
+
+.rating-count-text {
+  font-size: 0.85rem;
+  color: var(--foreground-muted);
+  font-weight: 600;
+}
+
+.reviews-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.review-filter-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--foreground-muted);
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.review-filter-btn:hover {
+  background: #ffffff;
+  border-color: var(--navy-700);
+  color: var(--navy-900);
+}
+
+.review-filter-btn.active {
+  background: var(--navy-900);
+  border-color: var(--navy-900);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(4, 28, 56, 0.2);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.review-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(4, 28, 56, 0.25);
+}
+
+.review-card-top {
+  margin-bottom: 1.25rem;
+}
+
+.review-author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.review-author-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--gold-600) 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(4, 28, 56, 0.2);
+}
+
+.review-author-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--navy-900);
+  line-height: 1.2;
+}
+
+.review-author-tenant {
+  font-size: 0.78rem;
+  color: var(--foreground-subtle);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.review-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.review-payout-tag {
+  background: var(--gold-100);
+  color: #925c04;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(212, 155, 32, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.review-stars {
+  color: #f59e0b;
+  display: flex;
+  gap: 2px;
+}
+
+.review-headline {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  margin-bottom: 0.6rem;
+  line-height: 1.35;
+}
+
+.review-text {
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-style: normal;
+}
+
+.review-outcome-box {
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.82rem;
+  color: #475569;
+  line-height: 1.45;
+}
+
+.review-outcome-label {
+  font-weight: 700;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Tenant Legal Rights & External Authority Backlinks Section
+   ========================================================================== */
+.authority-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.authority-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+}
+
+.authority-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--navy-700);
+  box-shadow: var(--shadow-lift);
+}
+
+.authority-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.authority-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--navy-50);
+  color: var(--navy-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.authority-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  line-height: 1.25;
+}
+
+.authority-org {
+  font-size: 0.75rem;
+  color: var(--foreground-subtle);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.authority-desc {
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 1rem;
+}
+
+.authority-link-action {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy-700);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap var(--transition-fast);
+}
+
+.authority-card:hover .authority-link-action {
+  color: var(--gold-600);
+  gap: 9px;
+}
+
+@media (max-width: 900px) {
+  .authority-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .authority-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Comparison Matrix: Claim4u vs Dealing with Landlord Alone
+   ========================================================================== */
+.comparison-section {
+  background-color: #ffffff;
+}
+
+.comparison-table-wrapper {
+  margin-top: 2.5rem;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.comparison-table th {
+  padding: 1.2rem 1.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+}
+
+.comparison-table td {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.comparison-table th.col-feature {
+  width: 38%;
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.comparison-table th.col-claim4u {
+  width: 32%;
+  background: var(--navy-900);
+  color: #ffffff;
+  position: relative;
+}
+
+.comparison-table th.col-council {
+  width: 30%;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.comparison-table td.col-claim4u-td {
+  background: rgba(4, 28, 56, 0.03);
+  font-weight: 600;
+  color: var(--navy-900);
+  border-left: 2px solid rgba(4, 28, 56, 0.08);
+  border-right: 2px solid rgba(4, 28, 56, 0.08);
+}
+
+.badge-winner {
+  background: var(--gold-500);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-left: 8px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.icon-check-circle {
+  color: #10b981;
+  display: inline-flex;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.icon-cross-circle {
+  color: #ef4444;
+  display: inline-flex;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Mobile Sticky Ad-Conversion Bar (Paid Ads Optimization)
+   ========================================================================== */
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(4, 28, 56, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.65rem 0.85rem;
+  z-index: 990;
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.mobile-sticky-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 0.5rem;
+  align-items: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.mobile-sticky-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-sticky-call {
+  background: #ffffff;
+  color: var(--navy-900);
+  border: 1px solid #cbd5e1;
+}
+
+.btn-sticky-wa {
+  background: var(--whatsapp);
+  color: #ffffff;
+}
+
+.btn-sticky-claim {
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(212, 155, 32, 0.4);
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-bar {
+    display: block;
+  }
+  /* Offset body padding so sticky bar doesn't obscure footer content */
+  body {
+    padding-bottom: 65px;
+  }
+  .floating-actions-container {
+    bottom: 80px;
+  }
+}
+
+/* ==========================================================================
+   Breadcrumb Navigation
+   ========================================================================== */
+.breadcrumb-container {
+  padding: 1rem 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground-subtle);
+}
+
+.breadcrumb-item a {
+  color: var(--navy-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--gold-600);
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #94a3b8;
+}
+
+.breadcrumb-current {
+  color: var(--foreground);
+  font-weight: 700;
+}
+

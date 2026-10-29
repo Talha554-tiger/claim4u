@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18344158870"></script>
   <script>
@@ -12,26 +15,40 @@
     gtag('config', 'AW-18344158870');
   </script>
 
-  <!-- Event snippet for Submit lead form conversion page -->
+  <!-- Google Ads Conversion Event: Lead Form Submitted (Currency: GBP for UK) -->
   <script>
     gtag('event', 'conversion', {
       'send_to': 'AW-18344158870/o8fFCJqoz4kdEJbN1qtE',
       'value': 1.0,
-      'currency': 'PKR'
+      'currency': 'GBP'
     });
   </script>
 
-  <!-- Event snippet for Contact conversion page -->
+  <!-- Meta Pixel Code -->
   <script>
-    gtag('event', 'conversion', { 'send_to': 'AW-18344158870/dgzOCOGJ4pQdEJbNlqtE' });
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    if (window.APP_CONFIG && window.APP_CONFIG.advertising && window.APP_CONFIG.advertising.metaPixelId) {
+      fbq('init', window.APP_CONFIG.advertising.metaPixelId);
+      fbq('track', 'PageView');
+      fbq('track', 'Lead', {
+        content_name: 'Housing Disrepair Claim Check Received',
+        currency: 'GBP',
+        value: 1.0
+      });
+    }
   </script>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thank You - Claim Received | Claim4u</title>
-  <meta name="description"
-    content="Thank you for submitting your housing disrepair claim check. A Claim4u housing solicitor will be in touch shortly." />
+  <meta name="description" content="Thank you for submitting your housing disrepair claim check. A Claim4u housing solicitor will be in touch shortly." />
   <meta name="author" content="Claim4u - Your Housing Claims Partner" />
+  <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#041c38" />
 
   <!-- Google Web Fonts -->
@@ -306,17 +323,15 @@
     <div class="footer-bottom-bar">
       <div class="container footer-bottom-inner">
         <span>© 2026 Claim4u. All rights reserved.</span>
-        <span>No Win, No Fee · Council & Housing Association tenants only</span>
+        <span>No Win, No Fee · Council &amp; Housing Association tenants only</span>
       </div>
     </div>
   </footer>
 
-  <!-- Firebase -->
-  <script type="module" src="js/firebase.js"></script>
   <script src="js/config.js"></script>
+  <script src="js/tracking.js"></script>
 
   <script>
-
     // Personalize message if lead data is present in sessionStorage or localStorage
     try {
       const raw = sessionStorage.getItem('claim4u_submitted_lead') || localStorage.getItem('claim4u_last_lead');
@@ -334,6 +349,17 @@
         }
       }
     } catch (e) { }
+
+    // Fire Meta Lead event if fbq is present
+    try {
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', {
+          content_name: 'Housing Disrepair Claim Check Completed',
+          currency: 'GBP',
+          value: 1.0
+        });
+      }
+    } catch (e) {}
   </script>
 </body>
 
