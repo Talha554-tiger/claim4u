@@ -54,13 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPrev = document.getElementById('btnPrev');
   const wizardSuccess = document.getElementById('wizardSuccess');
 
-  // Common UK Landlords for Autocomplete / Quick Pick
+  // Common England & Wales Landlords for Autocomplete / Quick Pick
   const commonLandlords = [
     'Lambeth Council', 'Southwark Council', 'Peabody', 'Clarion Housing',
     'Birmingham City Council', 'Manchester City Council', 'Leeds City Council',
+    'Cardiff Council', 'Swansea Council', 'Newport City Council', 'Wrexham County Borough',
+    'Pobl Group', 'Wales & West Housing', 'Hafod Housing', 'Linc Cymru',
     'Hyde Housing', 'Places for People', 'Sanctuary Housing', 'L&Q Housing',
     'Newham Council', 'Hackney Council', 'Bristol City Council', 'Liverpool City Council',
-    'Nottingham City Council', 'Sheffield City Council', 'Barking & Dagenham Council'
+    'Nottingham City Council', 'Sheffield City Council', 'Barking & Dagenham Council',
+    'Salford City Council', 'Newcastle City Council', 'Leicester City Council'
   ];
 
   /* ==========================================================================
@@ -130,6 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Step 1: Open Text Input for Council / Housing Association Name (Tenant writes directly)
   const landlordInput = document.getElementById('landlord_name');
   if (landlordInput) {
+    // Attach autocomplete datalist populated with England & Wales councils & associations
+    if (!document.getElementById('landlord-suggestions')) {
+      const datalist = document.createElement('datalist');
+      datalist.id = 'landlord-suggestions';
+      commonLandlords.forEach(landlord => {
+        const opt = document.createElement('option');
+        opt.value = landlord;
+        datalist.appendChild(opt);
+      });
+      document.body.appendChild(datalist);
+      landlordInput.setAttribute('list', 'landlord-suggestions');
+    }
+
     landlordInput.addEventListener('input', (e) => {
       claimData.landlord_name = e.target.value;
       clearFieldError('landlord_name');
