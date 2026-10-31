@@ -12,10 +12,26 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- UK Compensation Guide & Payout Bands -->
+  <!-- Road Traffic Accident (RTA) Claims England & Wales -->
+  <url>
+    <loc>https://claim4u-uk.co/rta-claims.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- RTA Compensation Guide & Calculator 2026 -->
+  <url>
+    <loc>https://claim4u-uk.co/rta-compensation.html</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Housing Compensation Guide & Payout Bands -->
   <url>
     <loc>https://claim4u-uk.co/compensation.html</loc>
-    <lastmod>2026-10-29</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

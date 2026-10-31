@@ -1,24 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap');
+
 /* ==========================================================================
-   CLAIM4U - Your Housing Claims Partner
-   Ultra-Professional Design System & High-Precision Alignment
+   CLAIM4U - UK Claims & Solicitor Panel Introducer
+   CaseFlow Legal Style Layout & Design System (England & Wales)
    ========================================================================== */
 
 :root {
-  /* Brand Palette - Deep British Navy & Polished Royal Gold */
+  /* CaseFlow Legal Brand Tokens */
+  --brand-navy: #0d1e3b;
+  --brand-navy-deep: #051127;
+  --brand-gold: #e3ad4b;
+  --brand-gold-soft: #f0d49b;
+  --gradient-hero: linear-gradient(135deg, #051127 0%, #18274b 60%, #232f5b 100%);
+  --gradient-gold: linear-gradient(135deg, #eebb58, #d49824);
+  --shadow-elegant: 0 20px 60px -20px rgba(5, 17, 39, 0.25);
+  --shadow-gold: 0 12px 40px -12px rgba(227, 173, 75, 0.4);
+
+  /* Deep British Navy Palette */
   --navy-950: #021226;
-  --navy-900: #041c38;
+  --navy-900: #051127;
   --navy-850: #07254a;
-  --navy-800: #0b3160;
-  --navy-700: #10427e;
-  --navy-600: #1958a3;
+  --navy-800: #0d1e3b;
+  --navy-700: #142a50;
+  --navy-600: #1b386b;
   --navy-100: #e8f0fa;
   --navy-50: #f1f6fc;
 
-  /* Gold Accents - Handcrafted to match Claim4u Logo */
-  --gold-600: #b58117;
-  --gold-500: #d49b20;
-  --gold-400: #e8b338;
-  --gold-300: #f5c862;
+  /* Gold Accents */
+  --gold-600: #c99320;
+  --gold-500: #e3ad4b;
+  --gold-400: #f0d49b;
+  --gold-300: #f7e3ba;
   --gold-100: #fef5db;
   --gold-50: #fffbf0;
 
@@ -28,55 +40,55 @@
   --whatsapp-hover: #20ba59;
 
   /* Semantic UI Tokens */
-  --primary: var(--navy-900);
-  --primary-hover: var(--navy-800);
-  --primary-light: var(--navy-700);
-  --primary-foreground: #ffffff;
+  --primary: #0d1e3b;
+  --primary-hover: #051127;
+  --primary-light: #18274b;
+  --primary-foreground: #fbf8f1;
 
-  --accent: var(--gold-500);
-  --accent-hover: var(--gold-600);
-  --accent-light: var(--gold-100);
-  --accent-foreground: var(--navy-950);
+  --accent: #e3ad4b;
+  --accent-hover: #c99320;
+  --accent-light: #fef5db;
+  --accent-foreground: #071123;
 
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --surface-alt: #f1f5f9;
+  --background: #fefdfb;
+  --surface: #f8f6f0;
+  --surface-alt: #f1ede4;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #071123;
   
-  --foreground: #0f172a;
-  --foreground-muted: #475569;
+  --foreground: #071123;
+  --foreground-muted: #4c5666;
   --foreground-subtle: #64748b;
 
-  --border: #e2e8f0;
-  --border-subtle: #edf2f7;
-  --border-focus: #07254a;
+  --border: #d7dfe8;
+  --border-subtle: #edf2f8;
+  --border-focus: #0d1e3b;
 
   --success: #10b981;
   --success-bg: #ecfdf5;
-  --destructive: #ef4444;
+  --destructive: #d40c1a;
   --destructive-bg: #fef2f2;
   --warning: #f59e0b;
 
-  /* Typography */
-  --font-display: 'Urbanist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Epilogue', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography: CaseFlow Editorial Serif + Inter */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Radius & Shadows */
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 28px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
 
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 10px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.03);
-  --shadow-soft: 0 10px 25px -5px rgba(4, 28, 56, 0.07), 0 8px 10px -6px rgba(4, 28, 56, 0.04);
-  --shadow-lift: 0 20px 45px -12px rgba(4, 28, 56, 0.16), 0 4px 12px rgba(4, 28, 56, 0.05);
-  --shadow-gold: 0 10px 25px -6px rgba(212, 155, 32, 0.4);
-  --shadow-whatsapp: 0 10px 25px -5px rgba(37, 211, 102, 0.45);
+  --shadow-soft: 0 10px 25px -5px rgba(5, 17, 39, 0.07), 0 8px 10px -6px rgba(5, 17, 39, 0.04);
+  --shadow-lift: 0 20px 45px -12px rgba(5, 17, 39, 0.16), 0 4px 12px rgba(5, 17, 39, 0.05);
 
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3078,5 +3090,712 @@ button, input, select, textarea {
 .breadcrumb-current {
   color: var(--foreground);
   font-weight: 700;
+}
+
+/* ==========================================================================
+   CaseFlow Legal Style Layout & Components (England & Wales)
+   ========================================================================== */
+
+/* Typography Helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* CaseFlow Top Bar */
+.cfl-topbar {
+  background: var(--brand-navy-deep);
+  color: rgba(251, 248, 241, 0.9);
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cfl-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cfl-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.cfl-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cfl-topbar-link {
+  color: rgba(251, 248, 241, 0.85);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.cfl-topbar-link:hover {
+  color: var(--brand-gold);
+}
+
+/* CaseFlow Sticky Header */
+.cfl-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(254, 253, 251, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(215, 223, 232, 0.7);
+}
+
+.cfl-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cfl-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.cfl-brand-text {
+  line-height: 1.15;
+}
+
+.cfl-brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.cfl-brand-sub {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--foreground-subtle);
+  font-weight: 700;
+}
+
+.cfl-nav {
+  display: none;
+  align-items: center;
+  gap: 1.85rem;
+}
+
+@media (min-width: 1024px) {
+  .cfl-nav {
+    display: flex;
+  }
+}
+
+.cfl-nav-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.cfl-nav-link:hover,
+.cfl-nav-link.active {
+  color: var(--primary);
+}
+
+.cfl-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brand-gold);
+  border-radius: 2px;
+}
+
+.cfl-nav-badge {
+  font-size: 0.68rem;
+  background: var(--gold-100);
+  color: #925c04;
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* CaseFlow Hero */
+.cfl-hero-section {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  background: var(--gradient-hero);
+  padding: 5rem 0 5.5rem;
+}
+
+.cfl-hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.cfl-hero-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 992px) {
+  .cfl-hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+  }
+}
+
+.cfl-hero-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--brand-gold);
+  margin-bottom: 1rem;
+}
+
+.cfl-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 5vw, 3.85rem);
+  line-height: 1.08;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.35rem;
+  letter-spacing: -0.015em;
+}
+
+.cfl-hero-title .gold-text {
+  color: var(--brand-gold);
+  display: block;
+}
+
+.cfl-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: rgba(251, 248, 241, 0.88);
+  max-width: 540px;
+  margin-bottom: 2rem;
+}
+
+.cfl-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-cfl-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--brand-gold);
+  color: var(--brand-navy-deep);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  box-shadow: var(--shadow-gold);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cfl-gold:hover {
+  background: var(--brand-gold-soft);
+  transform: translateY(-2px);
+}
+
+.btn-cfl-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-cfl-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+.cfl-hero-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.825rem;
+  color: rgba(251, 248, 241, 0.75);
+}
+
+.cfl-hero-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+/* Hero Fast-Intake Card */
+.cfl-hero-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 60px -15px rgba(5, 17, 39, 0.35);
+  color: var(--foreground);
+  padding: 2rem;
+  position: relative;
+}
+
+.cfl-card-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.cfl-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.cfl-card-sub {
+  font-size: 0.825rem;
+  color: var(--foreground-subtle);
+}
+
+/* Service Tab Switcher */
+.cfl-tab-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  background: var(--surface);
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+}
+
+.cfl-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.825rem;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--foreground-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cfl-tab-btn.active {
+  background: #ffffff;
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* CaseFlow Services Grid */
+.cfl-section {
+  padding: 5rem 0;
+}
+
+.cfl-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.cfl-section-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--brand-gold);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.cfl-section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--primary);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.cfl-section-sub {
+  font-size: 1.05rem;
+  color: var(--foreground-muted);
+  line-height: 1.6;
+}
+
+.cfl-services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .cfl-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cfl-services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cfl-service-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.85rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.cfl-service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-gold);
+  box-shadow: var(--shadow-elegant);
+}
+
+.cfl-icon-box {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: var(--brand-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.35rem;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cfl-service-card:hover .cfl-icon-box {
+  transform: scale(1.1);
+}
+
+.cfl-card-heading {
+  font-family: var(--font-serif);
+  font-size: 1.28rem;
+  color: var(--primary);
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.cfl-card-body {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--foreground-muted);
+  flex-grow: 1;
+  margin-bottom: 1.25rem;
+}
+
+.cfl-card-link-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-navy-deep);
+  transition: color 0.15s ease;
+}
+
+.cfl-service-card:hover .cfl-card-link-action {
+  color: var(--brand-gold);
+}
+
+/* CaseFlow Trust Accreditation Bar */
+.cfl-trust-bar {
+  background: #ffffff;
+  border-top: 1px solid rgba(215, 223, 232, 0.7);
+  border-bottom: 1px solid rgba(215, 223, 232, 0.7);
+  padding: 2.25rem 0;
+}
+
+.cfl-trust-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cfl-trust-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cfl-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cfl-trust-icon-wrap {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--secondary);
+  color: var(--brand-navy-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.cfl-trust-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cfl-trust-sub {
+  font-size: 0.78rem;
+  color: var(--foreground-subtle);
+}
+
+/* CaseFlow How It Works Journey */
+.cfl-steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .cfl-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cfl-steps-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.cfl-step-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.6rem;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.cfl-step-card:hover {
+  border-color: var(--brand-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.cfl-step-num {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--brand-gold);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.cfl-step-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.cfl-step-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--foreground-muted);
+}
+
+/* CaseFlow Location Breakdown Cards (England & Wales) */
+.cfl-location-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .cfl-location-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cfl-location-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.cfl-location-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.cfl-location-flag {
+  font-size: 1.8rem;
+}
+
+.cfl-location-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--gold-100);
+  color: #925c04;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* CaseFlow Footer */
+.cfl-footer {
+  background: var(--brand-navy-deep);
+  color: #ffffff;
+  padding-top: 5rem;
+}
+
+.cfl-footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .cfl-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cfl-footer-grid {
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+  }
+}
+
+.cfl-footer-brand-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(251, 248, 241, 0.75);
+  margin-top: 1.25rem;
+  max-width: 320px;
+}
+
+.cfl-footer-col-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brand-gold);
+  margin-bottom: 1.25rem;
+}
+
+.cfl-footer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cfl-footer-link {
+  color: rgba(251, 248, 241, 0.8);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.15s ease;
+}
+
+.cfl-footer-link:hover {
+  color: var(--brand-gold);
+}
+
+.cfl-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 1.5rem;
+  background: rgba(2, 10, 22, 0.85);
+}
+
+.cfl-footer-bottom-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(251, 248, 241, 0.65);
+}
+
+.cfl-footer-bottom-inner p {
+  margin-bottom: 0.75rem;
+}
+
+.cfl-footer-bottom-inner p:last-child {
+  margin-bottom: 0;
 }
 

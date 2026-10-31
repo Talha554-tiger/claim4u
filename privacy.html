@@ -87,41 +87,45 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <div class="top-bar-left">
+  <!-- Top Announcement Bar (CaseFlow Legal style) -->
+  <div class="cfl-topbar">
+    <div class="cfl-topbar-inner">
+      <div class="cfl-topbar-left">
         <span class="live-dot"></span>
-        <span>Claim4u Data Protection &amp; Privacy · England &amp; Wales Tenants · UK GDPR &amp; DPA 2018 Compliant</span>
+        <span>Claim4u Data Protection &amp; Privacy · <strong style="color: var(--brand-gold);">England &amp; Wales</strong> · UK GDPR Compliant</span>
       </div>
-      <div class="top-bar-right">
-        <a href="tel:07473956657" class="top-contact-link">📞 Call: 07473956657</a>
-        <a href="https://wa.me/447473956657" class="top-contact-link whatsapp-accent">💬 WhatsApp: 07473956657</a>
+      <div class="cfl-topbar-right">
+        <a href="tel:07473956657" class="cfl-topbar-link">📞 Call: 07473956657</a>
+        <a href="https://wa.me/447473956657" class="cfl-topbar-link" style="color: #4ade80;">💬 WhatsApp: 07473956657</a>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container site-header-inner">
-      <a href="index.html" class="logo-wrapper">
-        <img src="assets/claim4u-logo.png" alt="Claim4u Logo" class="site-logo" width="210" height="54" />
+  <!-- Sticky CaseFlow Header -->
+  <header class="cfl-header">
+    <div class="cfl-header-inner">
+      <a href="index.html" class="cfl-brand" title="Claim4u Home">
+        <img src="assets/claim4u-logo.png" alt="Claim4u Logo" style="height: 44px; width: auto;" />
+        <div class="cfl-brand-text">
+          <div class="cfl-brand-name">Claim4u Legal</div>
+          <div class="cfl-brand-sub">England &amp; Wales Claims Introducer</div>
+        </div>
       </a>
 
-      <nav class="nav-desktop">
-        <a href="index.html#eligibility" class="nav-link">Do I qualify?</a>
-        <a href="index.html#damage" class="nav-link">Types of damage</a>
-        <a href="index.html#calculator" class="nav-link">Calculator</a>
-        <a href="index.html#reviews" class="nav-link">Reviews</a>
-        <a href="index.html#how" class="nav-link">How it works</a>
-        <a href="compensation.html" class="nav-link">Compensation Guide</a>
-        <a href="areas.html" class="nav-link">Areas</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
+      <!-- Desktop Navigation -->
+      <nav class="cfl-nav">
+        <a href="index.html" class="cfl-nav-link">Home</a>
+        <a href="index.html#hdr" class="cfl-nav-link">Housing Disrepair</a>
+        <a href="rta-claims.html" class="cfl-nav-link">Road Accidents (RTA) <span class="cfl-nav-badge">NEW</span></a>
+        <a href="compensation.html" class="cfl-nav-link">Compensation Guide</a>
+        <a href="areas.html" class="cfl-nav-link">Areas (England &amp; Wales)</a>
+        <a href="privacy.html" class="cfl-nav-link active">Privacy Policy</a>
       </nav>
 
-      <div class="header-actions">
-        <a href="tel:07473956657" class="header-phone-btn">07473956657</a>
-        <a href="index.html#claim" class="btn btn-primary header-cta-btn">Start free check</a>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="index.html#enquiry" class="btn-cfl-gold" style="padding: 0.65rem 1.4rem; font-size: 0.88rem;">
+          Start Free Enquiry →
+        </a>
       </div>
     </div>
   </header>
@@ -222,51 +226,61 @@
     </div>
   </aside>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
+  <!-- CaseFlow Legal Footer -->
+  <footer class="cfl-footer">
+    <div class="cfl-footer-grid">
       <div>
-        <div class="footer-brand-logo">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
           <img src="assets/claim4u-logo.png" alt="Claim4u Logo" style="height: 40px; width: auto;" />
+          <div>
+            <div style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700; color: #ffffff;">Claim4u Legal</div>
+            <div style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--brand-gold);">England &amp; Wales Claims Panel</div>
+          </div>
         </div>
-        <p class="footer-brand-desc">
-          <strong>Claim4u — YOUR HOUSING CLAIMS PARTNER.</strong><br />
-          No Win, No Fee housing disrepair compensation claims throughout England &amp; Wales.
+        <p class="cfl-footer-brand-desc">
+          Connecting individuals across England and Wales with SRA-regulated solicitor firms for housing disrepair and road traffic accident compensation claims.
         </p>
       </div>
 
       <div>
-        <h4 class="footer-col-title">Navigation</h4>
-        <ul class="footer-links-list">
-          <li><a href="index.html" class="footer-link">Home</a></li>
-          <li><a href="compensation.html" class="footer-link">Compensation Guide</a></li>
-          <li><a href="areas.html" class="footer-link">Areas We Cover (England &amp; Wales)</a></li>
-          <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+        <div class="cfl-footer-col-title">Our Services</div>
+        <ul class="cfl-footer-list">
+          <li><a href="index.html#hdr" class="cfl-footer-link">Housing Disrepair (HDR)</a></li>
+          <li><a href="rta-claims.html" class="cfl-footer-link">Road Traffic Accidents (RTA)</a></li>
+          <li><a href="rta-compensation.html" class="cfl-footer-link">RTA Compensation Guide</a></li>
+          <li><a href="compensation.html" class="cfl-footer-link">Housing Compensation Guide</a></li>
+          <li><a href="areas.html" class="cfl-footer-link">Areas We Cover (England &amp; Wales)</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="footer-col-title">Contact</h4>
-        <ul class="footer-links-list">
+        <div class="cfl-footer-col-title">Direct Contact</div>
+        <ul class="cfl-footer-list">
           <li>Mon – Fri: 9:00am – 6:00pm</li>
-          <li><a href="tel:07473956657" class="footer-link" style="color: #ffffff; font-weight: 700;">📞 07473956657</a></li>
-          <li><a href="https://wa.me/447473956657" class="footer-link" style="color: #4ade80; font-weight: 700;">💬 WhatsApp: 07473956657</a></li>
-          <li><a href="mailto:info@claim4u.co.uk" class="footer-link">info@claim4u.co.uk</a></li>
+          <li><a href="tel:07473956657" class="cfl-footer-link" style="color: #ffffff; font-weight: 700;">📞 07473956657</a></li>
+          <li><a href="https://wa.me/447473956657" class="cfl-footer-link" style="color: #4ade80; font-weight: 700;">💬 WhatsApp: 07473956657</a></li>
+          <li><a href="mailto:info@claim4u.co.uk" class="cfl-footer-link">info@claim4u.co.uk</a></li>
+          <li><a href="privacy.html" class="cfl-footer-link">Privacy &amp; Data Policy</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="footer-col-title">Regulatory &amp; Jurisdiction</h4>
-        <ul class="footer-links-list">
-          <li style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Solicitors regulated by the Solicitors Regulation Authority (SRA).</li>
-          <li style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">Jurisdiction: England &amp; Wales social housing tenants only.</li>
+        <div class="cfl-footer-col-title">Regulatory Status</div>
+        <ul class="cfl-footer-list">
+          <li style="font-size: 0.8rem; color: rgba(255,255,255,0.75);">SRA-regulated solicitor partners throughout England &amp; Wales.</li>
+          <li style="font-size: 0.8rem; color: rgba(255,255,255,0.75);">Strict No Win, No Fee conditional fee representation.</li>
+          <li style="font-size: 0.8rem; color: var(--brand-gold);">Strictly England and Wales jurisdiction only.</li>
         </ul>
       </div>
     </div>
 
-    <div class="footer-bottom-bar">
-      <div class="container footer-bottom-inner">
-        <span>© 2026 Claim4u. All rights reserved.</span>
-        <span>No Win, No Fee · England &amp; Wales Council &amp; Housing Association tenants only</span>
+    <!-- CaseFlow Legal Statutory Notice Bar -->
+    <div class="cfl-footer-bottom">
+      <div class="cfl-footer-bottom-inner">
+        <p>© 2026 Claim4u. All rights reserved. Registered Claims Introducer for England &amp; Wales.</p>
+        <p>
+          Claim4u is a claims intake &amp; introducer platform connecting tenants and motorists across England and Wales with SRA-regulated solicitor panel firms. We are not a law firm and do not provide legal or financial advice directly. Any legal representation, fee agreements (No Win, No Fee), and case conduct are the sole responsibility of the independent SRA-regulated solicitor firm you are introduced to. Jurisdiction: England and Wales only.
+        </p>
       </div>
     </div>
   </footer>

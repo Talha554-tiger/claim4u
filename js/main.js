@@ -790,10 +790,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>
             <label style="font-size: 0.75rem; font-weight: 700; color: #475569;">Campaign Focus</label>
             <select id="adGenCampaign" class="form-select" style="font-size: 0.82rem; padding: 6px;">
-              <option value="mould_damp">Damp &amp; Mould Claims</option>
-              <option value="council_housing">Council Tenant Repairs</option>
+              <option value="mould_damp">Damp &amp; Mould Claims (HDR)</option>
+              <option value="council_housing">Council Tenant Repairs (HDR)</option>
               <option value="boiler_heating">Broken Boilers / Heating</option>
-              <option value="water_leaks">Water Ingress &amp; Leaks</option>
+              <option value="rta_car_accident">Road Traffic Accident (RTA England &amp; Wales)</option>
+              <option value="rta_credit_hire">Non-Fault Credit Hire Car</option>
+              <option value="rta_whiplash">Whiplash Injury Compensation</option>
               <option value="general_disrepair">General Housing Disrepair</option>
             </select>
           </div>
@@ -812,10 +814,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <thead>
           <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
             <th style="padding: 8px;">Date</th>
+            <th style="padding: 8px;">Type</th>
             <th style="padding: 8px;">Name</th>
             <th style="padding: 8px;">Phone</th>
-            <th style="padding: 8px;">Landlord</th>
-            <th style="padding: 8px;">Damages</th>
+            <th style="padding: 8px;">Location / Landlord</th>
+            <th style="padding: 8px;">Damages / Injury</th>
             <th style="padding: 8px;">Ad Source</th>
             <th style="padding: 8px;">Action</th>
           </tr>
@@ -828,13 +831,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const channelLabel = lead.ad_channel || (lead.attribution && lead.attribution.channel) || 'Direct';
         const channelColor = channelLabel.includes('Google') ? '#2563eb' : channelLabel.includes('Meta') ? '#0284c7' : '#64748b';
         
+        const typeBadge = lead.claim_type === 'RTA'
+          ? '<span style="background: #e0f2fe; color: #0369a1; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem;">🚗 RTA</span>'
+          : '<span style="background: #fef3c7; color: #92400e; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-size: 0.72rem;">🏠 Housing</span>';
+
+        const detailsStr = lead.claim_type === 'RTA'
+          ? `${escapeHtml(lead.country || 'England/Wales')} · ${escapeHtml(lead.role || 'Driver')}`
+          : escapeHtml(lead.landlord_name || 'Social Landlord');
+
+        const damagesStr = lead.claim_type === 'RTA'
+          ? escapeHtml((lead.injuries || []).join(', ') || 'Whiplash / Trauma')
+          : escapeHtml((lead.damage_types || []).join(', ') || 'Disrepair');
+
         leadsHtml += `
           <tr style="border-bottom: 1px solid #e2e8f0;">
             <td style="padding: 8px;">${dateStr}</td>
+            <td style="padding: 8px;">${typeBadge}</td>
             <td style="padding: 8px; font-weight: 700;">${escapeHtml(lead.full_name)}</td>
             <td style="padding: 8px;"><a href="tel:${lead.phone}" style="color: #07254a;">${escapeHtml(lead.phone)}</a></td>
-            <td style="padding: 8px;">${escapeHtml(lead.landlord_name)}</td>
-            <td style="padding: 8px;">${escapeHtml((lead.damage_types || []).join(', '))}</td>
+            <td style="padding: 8px;">${detailsStr}</td>
+            <td style="padding: 8px;">${damagesStr}</td>
             <td style="padding: 8px;">
               <span style="display: inline-block; font-size: 0.72rem; font-weight: 700; color: #ffffff; background: ${channelColor}; padding: 2px 7px; border-radius: 4px;">
                 ${escapeHtml(channelLabel)}
@@ -924,18 +940,22 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('No leads to export', 'warning');
       return;
     }
-    const headers = ['ID', 'Date', 'Full Name', 'Phone', 'Email', 'Landlord Type', 'Landlord Name', 'Damages', 'Cost Band', 'Postcode', 'Ad Channel', 'UTM Source', 'UTM Campaign', 'GCLID', 'FBCLID'];
+    const headers = ['ID', 'Date', 'Claim Type', 'Full Name', 'Phone', 'Email', 'Country', 'Role / Landlord Type', 'Landlord / Location', 'Damages / Injuries', 'Cost Band', 'Postcode', 'Ad Channel', 'UTM Source', 'UTM Campaign', 'GCLID', 'FBCLID'];
     const rows = leads.map(l => {
       const attr = l.attribution || {};
+      const isRta = l.claim_type === 'RTA';
+      const damages = isRta ? (l.injuries || []).join('; ') : (l.damage_types || []).join('; ');
       return [
         l.id || '',
         l.submitted_at || '',
+        `"${isRta ? 'RTA' : 'Housing'}"`,
         `"${(l.full_name || '').replace(/"/g, '""')}"`,
         `"${l.phone || ''}"`,
         `"${l.email || ''}"`,
-        `"${l.landlord_type || ''}"`,
-        `"${(l.landlord_name || '').replace(/"/g, '""')}"`,
-        `"${(l.damage_types || []).join('; ')}"`,
+        `"${l.country || 'England & Wales'}"`,
+        `"${isRta ? (l.role || '') : (l.landlord_type || '')}"`,
+        `"${((isRta ? l.acc_location : l.landlord_name) || '').replace(/"/g, '""')}"`,
+        `"${damages.replace(/"/g, '""')}"`,
         `"${l.estimated_cost_band || ''}"`,
         `"${l.postcode || ''}"`,
         `"${l.ad_channel || attr.channel || 'Direct'}"`,
