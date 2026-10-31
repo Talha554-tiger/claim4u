@@ -151,13 +151,50 @@
       </nav>
 
       <!-- Action Button -->
-      <div style="display: flex; align-items: center; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
         <a href="#rta-form" class="btn-cfl-gold" style="padding: 0.65rem 1.4rem; font-size: 0.88rem;">
           Start RTA Enquiry →
         </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open mobile menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <img src="assets/claim4u-logo.png" alt="Claim4u Logo" style="height: 38px; width: auto;" />
+      <button type="button" id="mobileDrawerClose" style="background: none; border: none; font-size: 26px; cursor: pointer; color: var(--primary);">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="index.html#services" class="mobile-nav-link">Our Services</a>
+      <a href="index.html#hdr" class="mobile-nav-link">Housing Disrepair (HDR)</a>
+      <a href="rta-claims.html" class="mobile-nav-link active">Road Accidents (RTA)</a>
+      <a href="rta-compensation.html" class="mobile-nav-link">RTA Payout Bands</a>
+      <a href="compensation.html" class="mobile-nav-link">Housing Compensation Guide</a>
+      <a href="areas.html" class="mobile-nav-link">Areas We Cover (England &amp; Wales)</a>
+      <a href="index.html#faq" class="mobile-nav-link">FAQ</a>
+      <a href="privacy.html" class="mobile-nav-link">Privacy Policy</a>
+    </div>
+    <div class="mobile-drawer-footer">
+      <a href="tel:07473956657" class="btn btn-navy" style="width: 100%;">
+        📞 Call 07473956657
+      </a>
+      <a href="https://wa.me/447473956657?text=Hello%20Claim4u%2C%20I%20want%20to%20start%20an%20RTA%20enquiry" class="btn btn-whatsapp" style="width: 100%;">
+        💬 WhatsApp 07473956657
+      </a>
+    </div>
+  </div>
 
   <!-- Breadcrumbs -->
   <nav class="breadcrumb-container" aria-label="Breadcrumb">
@@ -400,7 +437,7 @@
                   <div class="form-error" id="error-rta_country" style="display: none;"></div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-grid-2">
                   <div class="form-group">
                     <label class="form-label" for="rta_date">
                       Date of Accident <span style="color: var(--brand-gold);">*</span>
@@ -470,7 +507,7 @@
                 </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem;">
+              <div class="form-grid-2" style="margin-top: 1.25rem;">
                 <div class="form-group">
                   <label class="form-label">Did you seek medical attention?</label>
                   <select id="rta_medical" name="medical_attention" class="form-select">
@@ -500,7 +537,7 @@
               </h3>
 
               <div style="display: grid; grid-template-columns: 1fr; gap: 1.25rem;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-grid-2">
                   <div class="form-group">
                     <label class="form-label" for="rta_full_name">
                       Full Name <span style="color: var(--brand-gold);">*</span>
@@ -518,7 +555,7 @@
                   </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-grid-2">
                   <div class="form-group">
                     <label class="form-label" for="rta_email">
                       Email Address <span style="color: var(--brand-gold);">*</span>
@@ -569,8 +606,8 @@
           </p>
         </div>
 
-        <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 2.5rem;">
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+        <div class="table-responsive" style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-xl); overflow-x: auto; -webkit-overflow-scrolling: touch; box-shadow: var(--shadow-sm); margin-bottom: 2.5rem;">
+          <table style="width: 100%; min-width: 580px; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
             <thead>
               <tr style="background: var(--brand-navy-deep); color: #ffffff;">
                 <th style="padding: 1.25rem 1.5rem; font-weight: 700;">Injury Category (England &amp; Wales)</th>

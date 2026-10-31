@@ -3799,3 +3799,274 @@ button, input, select, textarea {
   margin-bottom: 0;
 }
 
+/* ==========================================================================
+   Comprehensive Mobile Responsiveness & Touch Optimization
+   ========================================================================== */
+
+/* Responsive form grid helper */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.table-responsive table {
+  min-width: 580px;
+}
+
+/* Mobile Screen Breakpoints */
+@media (max-width: 768px) {
+  /* Top Bar */
+  .cfl-topbar-inner {
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: center;
+    padding: 0.45rem 1rem;
+    font-size: 0.74rem;
+  }
+
+  .cfl-topbar-left {
+    justify-content: center;
+  }
+
+  .cfl-topbar-right {
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  /* Header */
+  .cfl-header-inner {
+    padding: 0.65rem 1rem;
+  }
+
+  .cfl-brand-name {
+    font-size: 1.25rem;
+  }
+
+  .cfl-brand-sub {
+    font-size: 0.58rem;
+  }
+
+  /* Hero Section */
+  .cfl-hero-section {
+    padding: 2.75rem 0 3.25rem;
+  }
+
+  .cfl-hero-grid {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+
+  .cfl-hero-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .cfl-hero-title {
+    font-size: clamp(1.85rem, 8vw, 2.65rem);
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    word-break: break-word;
+  }
+
+  .cfl-hero-desc {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .cfl-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .btn-cfl-gold,
+  .btn-cfl-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .cfl-hero-badges {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .cfl-hero-card {
+    padding: 1.35rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .cfl-card-title {
+    font-size: 1.25rem;
+  }
+
+  /* Section Spacing & Titles */
+  .cfl-section {
+    padding: 3.25rem 0;
+  }
+
+  .cfl-section-header {
+    margin-bottom: 2.25rem;
+    padding: 0 0.5rem;
+  }
+
+  .cfl-section-title {
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.18;
+  }
+
+  .cfl-section-sub {
+    font-size: 0.925rem;
+  }
+
+  /* Services Grid */
+  .cfl-service-card {
+    padding: 1.35rem;
+  }
+
+  .cfl-card-heading {
+    font-size: 1.18rem;
+  }
+
+  /* Trust Bar */
+  .cfl-trust-bar {
+    padding: 1.75rem 0;
+  }
+
+  .cfl-trust-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+
+  .cfl-trust-title {
+    font-size: 0.85rem;
+  }
+
+  .cfl-trust-sub {
+    font-size: 0.72rem;
+  }
+
+  /* Steps Grid */
+  .cfl-steps-grid {
+    gap: 1rem;
+  }
+
+  .cfl-step-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .cfl-step-num {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Location Cards */
+  .cfl-location-card {
+    padding: 1.35rem 1rem;
+  }
+
+  /* Wizard Card */
+  .claim-wizard-card {
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Form Elements: Ensure iOS Safari no auto-zoom (min 16px font-size) */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px !important;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .choice-btn,
+  .damage-chip {
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .damage-chips-grid {
+    gap: 0.45rem;
+  }
+
+  /* Footer */
+  .cfl-footer {
+    padding-top: 3.5rem;
+  }
+
+  .cfl-footer-grid {
+    gap: 2rem;
+    padding: 0 1rem 2.5rem;
+  }
+
+  .cfl-footer-bottom {
+    padding: 1.5rem 1rem;
+  }
+
+  /* WhatsApp Popup on Mobile */
+  .whatsapp-chat-popup {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    bottom: 82px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra narrow screens (320px - 480px) */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .choice-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .cfl-tab-switcher {
+    grid-template-columns: 1fr;
+  }
+
+  .cfl-tab-btn {
+    padding: 0.55rem;
+  }
+
+  .cfl-trust-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .review-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .authority-card {
+    padding: 1.25rem 1rem;
+  }
+}
+

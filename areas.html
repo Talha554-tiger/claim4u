@@ -124,13 +124,50 @@
         <a href="index.html#faq" class="cfl-nav-link">FAQ</a>
       </nav>
 
-      <div style="display: flex; align-items: center; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
         <a href="index.html#enquiry" class="btn-cfl-gold" style="padding: 0.65rem 1.4rem; font-size: 0.88rem;">
           Start Free Enquiry →
         </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open mobile menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <img src="assets/claim4u-logo.png" alt="Claim4u Logo" style="height: 38px; width: auto;" />
+      <button type="button" id="mobileDrawerClose" style="background: none; border: none; font-size: 26px; cursor: pointer; color: var(--primary);">&times;</button>
+    </div>
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="index.html#services" class="mobile-nav-link">Our Services</a>
+      <a href="index.html#hdr" class="mobile-nav-link">Housing Disrepair (HDR)</a>
+      <a href="rta-claims.html" class="mobile-nav-link">Road Traffic Accidents (RTA)</a>
+      <a href="rta-compensation.html" class="mobile-nav-link">RTA Payout Bands</a>
+      <a href="compensation.html" class="mobile-nav-link">Housing Compensation Guide</a>
+      <a href="areas.html" class="mobile-nav-link active">Areas We Cover (England &amp; Wales)</a>
+      <a href="index.html#faq" class="mobile-nav-link">FAQ</a>
+      <a href="privacy.html" class="mobile-nav-link">Privacy Policy</a>
+    </div>
+    <div class="mobile-drawer-footer">
+      <a href="tel:07473956657" class="btn btn-navy" style="width: 100%;">
+        📞 Call 07473956657
+      </a>
+      <a href="https://wa.me/447473956657?text=Hello%20Claim4u%2C%20I%20have%20an%20enquiry%20regarding%20areas%20covered%20in%20England%20or%20Wales" class="btn btn-whatsapp" style="width: 100%;">
+        💬 WhatsApp 07473956657
+      </a>
+    </div>
+  </div>
 
   <!-- Breadcrumbs -->
   <nav class="breadcrumb-container" aria-label="Breadcrumb">
